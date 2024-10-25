@@ -5,8 +5,9 @@
     <title>search</title>
 </head>
 <body>
-    <form method="GET" action="">
-        <input type="text" value="{{ query }}" name="q">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" value="" name="search">
         <button type="submit">submit</button>
     </form>
 
@@ -21,14 +22,12 @@
             <tbody>
                 {% for row in rows %}
                 <tr>
-                    <td>{{ row.0 }}</td>
                     <td>{{ row.1 }}</td>
+                    <td>{{ row.2 }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    {% else %}
-        <p>No results found.</p>
     {% endif %}
 </body>
 </html>
